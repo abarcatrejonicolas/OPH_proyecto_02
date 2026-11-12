@@ -1,0 +1,338 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Objetivos, preguntas e hipótesis | Administración</title><meta name="description" content="Formulación coherente para estudios correlacionales y descriptivos, bivariados y con tres o más variables."><style>
+    :root {
+      --navy: #102b4e;
+      --blue: #174f88;
+      --blue-2: #246eae;
+      --pale: #eaf2fa;
+      --ink: #1d2938;
+      --muted: #667487;
+      --line: #dce4ed;
+      --bg: #f3f6fa;
+      --white: #ffffff;
+      --success: #18794e;
+      --danger: #b42318;
+      --shadow: 0 12px 34px rgba(16, 43, 78, .08);
+      --radius: 16px;
+      --hero-bg: linear-gradient(120deg, #102b4e 0%, #174f88 65%, #246eae 100%);
+    }
+    body[data-theme="claro"] {
+      --navy: #253b59; --blue: #416b9b; --blue-2: #6d91b8; --pale: #edf3fa;
+      --ink: #263445; --muted: #69798d; --line: #e0e7ef; --bg: #f8fafc;
+      --white: #ffffff; --hero-bg: linear-gradient(120deg, #e7eef7 0%, #dce8f5 65%, #cbdced 100%);
+    }
+    body[data-theme="oscuro"] {
+      --navy: #9dc7f4; --blue: #8bbcf0; --blue-2: #68a6e5; --pale: #203752;
+      --ink: #e7eef8; --muted: #a8b7ca; --line: #34475f; --bg: #101a29;
+      --white: #18263a; --hero-bg: linear-gradient(120deg, #0a1422 0%, #142c49 65%, #1b416b 100%);
+      --shadow: 0 12px 34px rgba(0, 0, 0, .22);
+    }
+    body[data-theme="verde"] {
+      --navy: #174c42; --blue: #236b5d; --blue-2: #3d927e; --pale: #e5f4ef;
+      --ink: #203b35; --muted: #637b74; --line: #d4e7df; --bg: #f1f7f4;
+      --white: #ffffff; --hero-bg: linear-gradient(120deg, #123b34 0%, #1c6657 65%, #32917b 100%);
+    }
+    * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+    .hero {
+      background: var(--hero-bg);
+      color: white;
+      padding: 42px 22px 50px;
+    }
+    .hero-inner, main { width: min(1100px, calc(100% - 36px)); margin: 0 auto; }
+    .hero-inner { position: relative; }
+    .hero-tools { display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-bottom:20px; }
+    .hero-tools label { color: inherit; margin:0; font-size:.82rem; }
+    .hero-tools select { width:auto; min-width:150px; min-height:38px; padding:7px 34px 7px 10px; border-color:rgba(255,255,255,.35); background:rgba(255,255,255,.12); color:inherit; }
+    .hero-tools select option { color:#1d2938; background:#fff; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 11px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      color: #e6f1ff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 14px 0 8px; font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1.15; }
+    .hero p { max-width: 760px; margin: 0; color: #e4edf7; }
+    main { padding: 28px 0 60px; }
+    .step-heading { display: flex; align-items: center; gap: 12px; margin: 30px 0 16px; }
+    .step-number {
+      display: grid; place-items: center; flex: 0 0 34px; height: 34px;
+      border-radius: 10px; background: var(--navy); color: white; font-weight: 800;
+    }
+    h2 { margin: 0; color: var(--navy); font-size: 1.35rem; }
+    .section-intro { margin: -8px 0 16px 46px; color: var(--muted); font-size: .94rem; }
+    .card {
+      background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 22px; box-shadow: var(--shadow); margin-bottom: 16px;
+    }
+    .variables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .variable-card { border-top: 4px solid var(--blue-2); }
+    .variable-card h3 { margin: 0 0 15px; color: var(--navy); font-size: 1.08rem; }
+    .field { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 6px; color: var(--ink); font-size: .9rem; font-weight: 700; }
+    input, select {
+      width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #cbd5e1;
+      border-radius: 9px; background: var(--white); color: var(--ink); font: inherit; outline: none;
+    }
+    input:focus, select:focus { border-color: var(--blue-2); box-shadow: 0 0 0 3px rgba(36,110,174,.13); }
+    .dimension-list { display: grid; gap: 9px; }
+    .dimension-row { display: flex; align-items: center; gap: 8px; }
+    .dimension-row input { flex: 1; }
+    .remove-dimension {
+      flex: 0 0 40px; width: 40px; height: 42px; border: 1px solid #f1c7c4;
+      border-radius: 9px; background: #fff7f6; color: var(--danger); cursor: pointer;
+      font-size: 1.2rem; font-weight: 700;
+    }
+    .small-button, .primary-button, .secondary-button, .copy-button {
+      border: 0; border-radius: 9px; cursor: pointer; font: inherit; font-weight: 700;
+      transition: transform .12s ease, background .12s ease;
+    }
+    button:active { transform: translateY(1px); }
+    .small-button {
+      margin-top: 11px; padding: 9px 13px; background: var(--pale); color: var(--blue);
+      font-size: .88rem;
+    }
+    .small-button:hover { background: #dceafa; }
+    .details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 16px; }
+    .hint { margin: 5px 0 0; color: var(--muted); font-size: .82rem; }
+    .actions {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0 8px;
+    }
+    .primary-button { padding: 13px 20px; background: var(--navy); color: white; }
+    .primary-button:hover { background: var(--blue); }
+    .secondary-button { padding: 12px 17px; background: white; color: var(--navy); border: 1px solid #cbd5e1; }
+    .secondary-button:hover { background: #f8fafc; }
+    .notice {
+      border: 1px solid #cbdcf0; border-left: 4px solid var(--blue-2); border-radius: 10px;
+      background: #f4f8fd; padding: 12px 14px; color: #40536b; font-size: .88rem;
+    }
+    .error-box {
+      display: none; margin: 14px 0; padding: 12px 14px; border-radius: 9px;
+      background: #fff1f0; border: 1px solid #f3c2be; color: #912018;
+    }
+    #results { display: none; }
+    .results-top {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .result-card { margin-bottom: 13px; padding: 18px 20px; }
+    .result-card h3 {
+      margin: 0 0 10px; color: var(--blue); font-size: .98rem; text-transform: uppercase;
+      letter-spacing: .035em;
+    }
+    .result-text { margin: 0; white-space: pre-wrap; }
+    .result-list { margin: 0; padding-left: 22px; }
+    .result-list li { padding: 3px 0 7px 3px; }
+    .result-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .copy-button {
+      padding: 7px 10px; background: #edf3f9; color: var(--blue); font-size: .8rem;
+      white-space: nowrap;
+    }
+    .copy-button:hover { background: #dceafa; }
+    .hypothesis-note { color: var(--muted); font-style: italic; margin: 0; }
+    .footer { text-align: center; color: #718096; font-size: .82rem; padding: 20px; }
+    .toast {
+      position: fixed; right: 20px; bottom: 20px; z-index: 20; display: none;
+      background: #173d63; color: white; padding: 11px 16px; border-radius: 10px;
+      box-shadow: var(--shadow); font-size: .9rem;
+    }
+
+
+    body[data-theme="claro"] .hero { color:#1d3552; }
+    body[data-theme="claro"] .hero p { color:#405873; }
+    body[data-theme="claro"] .hero .eyebrow { color:#294563; border-color:rgba(41,69,99,.28); }
+    body[data-theme="claro"] .hero-tools select { color:#1d3552; border-color:rgba(41,69,99,.25); background:rgba(255,255,255,.72); }
+    body[data-theme="oscuro"] .secondary-button { background:var(--white); color:var(--ink); border-color:var(--line); }
+    body[data-theme="oscuro"] .small-button, body[data-theme="oscuro"] .copy-button { background:var(--pale); color:var(--blue); }
+    body[data-theme="oscuro"] .notice { background:#1d3048; border-color:#395575; color:#d2dfef; }
+    body[data-theme="oscuro"] .remove-dimension { background:#3a2428; border-color:#75464d; color:#ffb7b0; }
+    body[data-theme="oscuro"] .error-box { background:#3b2225; border-color:#75464d; color:#ffc7c2; }
+    /* Animaciones discretas para una experiencia académica profesional */
+    .hero { position:relative; overflow:hidden; isolation:isolate; }
+    .hero::before {
+      content:""; position:absolute; width:360px; height:360px; right:-90px; top:-170px;
+      border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,.18), transparent 68%);
+      z-index:-1; animation: ambientFloat 9s ease-in-out infinite alternate;
+    }
+    .eyebrow { animation: fadeDown .65s ease both; }
+    .hero h1 { animation: fadeUp .75s .08s ease both; }
+    .hero p { animation: fadeUp .75s .18s ease both; }
+    .step-heading { animation: fadeUp .5s ease both; }
+    .step-number { box-shadow:0 5px 16px rgba(16,43,78,.16); transition:transform .25s ease, box-shadow .25s ease; }
+    .step-heading:hover .step-number { transform:translateY(-2px) rotate(-3deg); box-shadow:0 8px 20px rgba(16,43,78,.22); }
+    .card { transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; animation:fadeUp .55s ease both; }
+    .card:hover { transform:translateY(-3px); box-shadow:0 16px 38px rgba(16,43,78,.12); border-color:var(--blue-2); }
+    input, select { transition:border-color .2s ease, box-shadow .2s ease, background .25s ease; }
+    button { transition:transform .2s ease, box-shadow .2s ease, background .2s ease, filter .2s ease; }
+    button:hover { transform:translateY(-2px); filter:brightness(1.03); }
+    button:active { transform:translateY(0) scale(.985); }
+    .primary-button:hover { box-shadow:0 8px 20px rgba(16,43,78,.18); }
+    .result-card { animation:resultReveal .48s cubic-bezier(.2,.75,.25,1) both; }
+    .dimension-row { animation:fadeUp .25s ease both; }
+    .toast { animation:toastIn .28s ease both; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes resultReveal { from { opacity:0; transform:translateY(18px) scale(.99); } to { opacity:1; transform:translateY(0) scale(1); } }
+    @keyframes toastIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes ambientFloat { from { transform:translate3d(0,0,0) scale(1); } to { transform:translate3d(-25px,28px,0) scale(1.12); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
+    }
+    @media (max-width: 760px) {
+      .variables-grid, .details-grid { grid-template-columns: 1fr; }
+      .hero { padding: 28px 18px 38px; }
+      .hero-tools { justify-content:flex-start; margin-bottom:18px; }
+      .card { padding: 17px; }
+      .section-intro { margin-left: 0; }
+      .results-top { align-items: flex-start; }
+    }
+  
+textarea{width:100%;min-height:85px;border:1px solid #cbd5e1;border-radius:9px;padding:10px;font:inherit;background:var(--white);color:var(--ink)}
+[hidden]{display:none!important}.variable-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.variable-top button{margin:0}fieldset{border:0;padding:0;margin:0}legend{font-weight:700;margin-bottom:8px}.muted{color:var(--muted)}.badge{display:inline-block;background:var(--pale);color:var(--blue);padding:4px 10px;border-radius:16px;font-size:.85rem}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.check{display:flex;gap:10px;align-items:flex-start}.check input{width:20px;min-height:20px;margin-top:4px;flex:none}.checks{margin:12px 0}.references li{margin-bottom:16px}a{color:var(--blue)}.white-link{color:white}.result-card h3{text-transform:none}.result-text{overflow-wrap:anywhere}.matrix{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{text-align:left;padding:12px;border:1px solid var(--line);vertical-align:top;min-width:180px}th{background:var(--pale);color:var(--navy)}#resultContent .card{animation:none}.photo{width:72px;height:72px;border-radius:50%;object-fit:cover}footer{max-width:1100px;margin:auto;padding:24px 20px 40px}.credits{border-top:1px solid var(--line);padding-top:18px}summary{cursor:pointer;font-weight:700;color:var(--navy)}.reference-note{font-size:.87rem;margin-top:5px}.intro-note{max-width:850px}.status{padding:10px 0;color:var(--blue);font-size:.9rem}.preview-title{font-size:1.3rem;font-weight:650;line-height:1.5}.counter{font-size:.8rem;color:var(--muted);margin-top:8px}.v-fields{display:grid;gap:12px}.variable-card{box-shadow:none}.print-head{display:none}@media print{body{background:white;color:black;font-size:11pt}.hero,form,.actions,.no-print,#toast,footer details{display:none!important}main{width:100%;padding:0}.card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;transform:none!important}#results{display:block!important}.print-head{display:block}footer{padding:0}.references li{break-inside:avoid}}
+</style></head>
+<body data-theme="azul"><header class="hero"><div class="hero-inner"><div class="hero-tools"><label for="themeSwitcher">Tema</label><select id="themeSwitcher"><option value="azul">Azul institucional</option><option value="claro">Claro</option><option value="oscuro">Oscuro</option><option value="verde">Verde</option></select></div><span class="eyebrow">Proyecto 2 · Escuela de Administración · UNASAM</span><h1>Objetivos, preguntas e hipótesis</h1><p>Formulación coherente para estudios correlacionales y descriptivos, bivariados y con tres o más variables.</p></div></header>
+<main><p class="notice intro-note">Herramienta académica de apoyo. Las formulaciones son propuestas editables del programa, no fórmulas oficiales de los autores ni una validación institucional. No genera resultados de investigación.</p>
+<form id="researchForm"><div class="step-heading"><span class="step-number">1</span><h2>Define el estudio</h2></div><section class="card"><div class="details-grid"><div class="field"><label for="scope">Alcance</label><select id="scope"><option value="correlacional">Correlacional</option><option value="descriptivo">Descriptivo</option></select></div><div class="field"><label for="author">Autor de referencia metodológica</label><select id="author"><option value="0">Roberto Hernández Sampieri (2014)</option><option value="1">Arístides Vara Horna (2012)</option><option value="2">César Augusto Bernal Torres (2010)</option><option value="3">Luis Augusto Villanueva Benites</option></select></div></div><p id="authorNote" class="hint"></p><p class="hint">El selector muestra el sustento de cada fuente; no cambia las palabras para atribuir al autor una plantilla que no escribió.</p><p id="scopeNote" class="notice"></p><div id="causal" class="checks" hidden><label class="check"><input type="checkbox" id="causalCheck"><span>Mi estudio plantea un efecto causal y justificaré la temporalidad, el diseño y el control de explicaciones alternativas. Una encuesta correlacional por sí sola no demuestra influencia.</span></label></div>
+<div id="hypothesisControls" class="field" hidden><label for="descMode">Hipótesis en el estudio descriptivo</label><select id="descMode"><option value="none">Sin pronóstico: no formular hipótesis automáticamente</option><option value="forecast">Con pronóstico: ingresar valor esperado y fundamento</option></select></div></section>
+<div class="step-heading"><span class="step-number">2</span><h2>Variables</h2><span class="badge" id="variableCount"></span></div><p class="section-intro">Usa nombres sin artículo inicial: por ejemplo, “clima organizacional”. Agregar dimensiones no equivale a agregar variables.</p><div id="variables" class="variables-grid"></div><button type="button" class="small-button" id="addVariable">＋ Agregar otra variable</button><section class="card" style="margin-top:20px"><div id="targetField"><label for="target">Variable de referencia para las relaciones</label><select id="target"></select><p id="targetHelp" class="hint"></p></div><div id="specificField" class="field" style="margin-top:15px" hidden><label for="specificMode">Detalle de los objetivos y preguntas específicos</label><select id="specificMode"><option value="variables">Por variables</option><option value="dimensions" selected>Por variables y dimensiones ingresadas</option></select><p class="hint">Las dimensiones son opcionales y deben sustentarse con la teoría de cada variable.</p></div></section>
+<div class="step-heading"><span class="step-number">3</span><h2>Delimita el contexto</h2></div><section class="card"><div class="details-grid"><div class="field"><label for="population">Población o unidad de análisis *</label><input id="population" required maxlength="180" placeholder="Ej. trabajadores administrativos"></div><div class="field"><label for="institution">Organización o ámbito institucional *</label><input id="institution" required maxlength="180" placeholder="Ej. Municipalidad Provincial de Huaraz"></div><div class="field"><label for="place">Lugar *</label><input id="place" required maxlength="140" placeholder="Ej. Huaraz"></div><div class="field"><label for="year">Año *</label><input id="year" type="number" min="2000" max="2100" step="1" required value="2026"></div></div><p class="hint">Todos los datos deben corresponder a tu estudio. El programa no verifica la existencia de la organización ni el acceso a la población.</p><details class="no-print"><summary>Cargar un ejemplo didáctico</summary><p class="hint">Son ejemplos ficticios para probar la herramienta; no constituyen investigaciones realizadas ni dimensiones validadas.</p><label for="example">Tema</label><select id="example"></select><div class="actions"><button type="button" class="secondary-button" id="loadExample">Cargar ejemplo de dos variables</button><button type="button" class="secondary-button" id="multiExample">Ejemplo de tres variables</button></div></details></section>
+<div id="errors" class="error-box" role="alert"></div><div class="actions"><button class="primary-button" type="submit">Generar objetivos, preguntas e hipótesis</button><button type="button" class="secondary-button" id="clear">Limpiar</button></div><p class="hint">Cada cambio en el formulario requiere volver a generar.</p></form>
+<section id="results" aria-live="polite"><h2 class="print-head">Objetivos, preguntas e hipótesis</h2><div class="step-heading"><span class="step-number">4</span><h2>Propuesta para revisión</h2></div><div class="actions"><button type="button" id="copyAll" class="secondary-button">Copiar resultados</button><button type="button" id="downloadTxt" class="secondary-button">Descargar texto</button><button type="button" id="downloadWord" class="primary-button">Descargar Word (.docx)</button><button type="button" id="print" class="secondary-button">Imprimir / PDF</button></div><div id="resultContent"></div></section><p id="status" class="status" role="status"></p>
+</main><footer><details open><summary>Referencias y criterios metodológicos</summary><p class="hint">Cuatro autores de la consigna. Las referencias de Bernal y Villanueva corresponden a los documentos proporcionados.</p><ol class="references"><li><a href="https://www.esup.edu.pe/wp-content/uploads/2020/12/2.%20Hernandez%2C%20Fernandez%20y%20Baptista-metodolog%C3%ADa%20Investigacion%20Cientifica%206ta%20ed.pdf" target="_blank" rel="noopener noreferrer">Hernández Sampieri, R., Fernández Collado, C., y Baptista Lucio, P. (2014). Metodología de la investigación (6.ª ed.). McGraw-Hill Education.</a><p class="reference-note">Capítulos 3, 5 y 6. Los alcances descriptivo, correlacional y explicativo responden a propósitos distintos. La asociación no demuestra causalidad. Las hipótesis descriptivas de pronóstico requieren un dato o valor esperado.</p></li><li><a href="https://www.administracion.usmp.edu.pe/investigacion/files/7-PASOS-PARA-UNA-TESIS-EXITOSA-Desde-la-idea-inicial-hasta-la-sustentaci%C3%B3n.pdf" target="_blank" rel="noopener noreferrer">Vara-Horna, A. (2012). Desde la idea hasta la sustentación: 7 pasos para una tesis exitosa. Un método efectivo para las ciencias empresariales. Universidad de San Martín de Porres.</a><p class="reference-note">Apartados 2.10, 3.3, 3.5 y 4.1. Los títulos delimitan el tema; los objetivos y las hipótesis deben ser coherentes con el problema. Su clasificación incluye el descriptivo-correlacional dentro de los diseños descriptivos.</p></li><li>Bernal Torres, C. A. (2010). Metodología de la investigación: administración, economía, humanidades y ciencias sociales (3.ª ed.). Pearson Educación.<p class="reference-note">Apartados 7.3, 7.5 y 7.7. Objetivos claros con verbos en infinitivo; los estudios descriptivos no requieren hipótesis por defecto. Las hipótesis se formulan para contrastar proposiciones y relaciones.</p><p class="hint">PDF proporcionado: 2010 Cesar Bernal - Metodologia de la Investigacion - copia.pdf</p></li><li>Villanueva Benites, L. A. (s. f.). Diseño del proyecto e informe de investigación: una aplicación a las ciencias empresariales. Facultad de Administración y Turismo, Universidad Nacional Santiago Antúnez de Mayolo.<p class="reference-note">Apartado 2.3 (títulos); capítulos 6 (hipótesis), 7 (objetivos) y 8 (tipos y diseños). Objetivos congruentes con las preguntas; asociación sin causalidad; hipótesis descriptivas opcionales según el propósito.</p><p class="hint">PDF proporcionado: 2020 Villanueva Luis - copia.pdf. El año 2020 figura en el nombre del archivo, pero no se identifica una fecha de publicación en el documento.</p></li></ol></details><div class="credits"><h2 style="font-size:1.1rem">Créditos</h2><p id="creditName">Autoría del proyecto: pendiente de completar.</p><p>Desarrollo de la herramienta con asistencia de ChatGPT. Referencias metodológicas: autores citados arriba. Proyecto académico para Administración, UNASAM; sin aval institucional.</p><details class="no-print"><summary>Completar nombre y foto del estudiante</summary><p class="hint">Estos datos permanecen en este navegador. Usa “Guardar HTML con mis créditos” para incluirlos en el archivo que publicarás. El nombre y la foto del perfil de GitHub se configuran por separado.</p><div class="details-grid"><div class="field"><label for="student">Nombre completo</label><input id="student" maxlength="160" placeholder="Escribe tu nombre real"></div><div class="field"><label for="photo">Foto opcional (JPG, PNG o WebP; máximo 2 MB)</label><input type="file" id="photo" accept="image/jpeg,image/png,image/webp"></div></div><button type="button" id="saveCredits" class="secondary-button">Guardar HTML con mis créditos</button></details><img id="creditPhoto" class="photo" alt="Foto del autor del proyecto" hidden></div></footer><div id="toast" class="toast" role="status"></div><script id="embeddedCredits" type="application/json">{"name":"","photo":""}</script><script>const CONFIG = {"project": 2, "repo": "OPH_proyecto", "title": "Objetivos, preguntas e hipótesis", "refs": [{"name": "Roberto Hernández Sampieri (2014)", "ref": "Hernández Sampieri, R., Fernández Collado, C., y Baptista Lucio, P. (2014). Metodología de la investigación (6.ª ed.). McGraw-Hill Education.", "url": "https://www.esup.edu.pe/wp-content/uploads/2020/12/2.%20Hernandez%2C%20Fernandez%20y%20Baptista-metodolog%C3%ADa%20Investigacion%20Cientifica%206ta%20ed.pdf", "note": "Capítulos 3, 5 y 6. Los alcances descriptivo, correlacional y explicativo responden a propósitos distintos. La asociación no demuestra causalidad. Las hipótesis descriptivas de pronóstico requieren un dato o valor esperado."}, {"name": "Arístides Vara Horna (2012)", "ref": "Vara-Horna, A. (2012). Desde la idea hasta la sustentación: 7 pasos para una tesis exitosa. Un método efectivo para las ciencias empresariales. Universidad de San Martín de Porres.", "url": "https://www.administracion.usmp.edu.pe/investigacion/files/7-PASOS-PARA-UNA-TESIS-EXITOSA-Desde-la-idea-inicial-hasta-la-sustentaci%C3%B3n.pdf", "note": "Apartados 2.10, 3.3, 3.5 y 4.1. Los títulos delimitan el tema; los objetivos y las hipótesis deben ser coherentes con el problema. Su clasificación incluye el descriptivo-correlacional dentro de los diseños descriptivos."}, {"name": "César Augusto Bernal Torres (2010)", "ref": "Bernal Torres, C. A. (2010). Metodología de la investigación: administración, economía, humanidades y ciencias sociales (3.ª ed.). Pearson Educación.", "url": "", "source": "PDF proporcionado: 2010 Cesar Bernal - Metodologia de la Investigacion - copia.pdf", "note": "Apartados 7.3, 7.5 y 7.7. Objetivos claros con verbos en infinitivo; los estudios descriptivos no requieren hipótesis por defecto. Las hipótesis se formulan para contrastar proposiciones y relaciones."}, {"name": "Luis Augusto Villanueva Benites", "ref": "Villanueva Benites, L. A. (s. f.). Diseño del proyecto e informe de investigación: una aplicación a las ciencias empresariales. Facultad de Administración y Turismo, Universidad Nacional Santiago Antúnez de Mayolo.", "url": "", "source": "PDF proporcionado: 2020 Villanueva Luis - copia.pdf. El año 2020 figura en el nombre del archivo, pero no se identifica una fecha de publicación en el documento.", "note": "Apartado 2.3 (títulos); capítulos 6 (hipótesis), 7 (objetivos) y 8 (tipos y diseños). Objetivos congruentes con las preguntas; asociación sin causalidad; hipótesis descriptivas opcionales según el propósito."}], "examples": [{"area": "Marketing", "variable1": "marketing digital", "variable2": "decisión de compra", "dimensions": [["marketing de contenidos", "publicidad digital", "interacción en redes sociales"], ["búsqueda de información", "evaluación de alternativas", "elección de compra"]], "population": "los clientes", "institution": "la empresa Comercial Andina S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Marketing", "variable1": "calidad del servicio", "variable2": "fidelización del cliente", "dimensions": [["fiabilidad", "capacidad de respuesta", "empatía"], ["intención de recompra", "recomendación", "preferencia de marca"]], "population": "los clientes", "institution": "la empresa Comercial Andina S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Marketing", "variable1": "imagen de marca", "variable2": "confianza del consumidor", "dimensions": [["notoriedad", "asociaciones de marca", "calidad percibida"], ["credibilidad", "integridad percibida", "benevolencia percibida"]], "population": "los clientes", "institution": "la empresa Comercial Andina S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Recursos Humanos", "variable1": "gestión del talento humano", "variable2": "desempeño laboral", "dimensions": [["selección de personal", "capacitación", "compensación"], ["cumplimiento de tareas", "calidad del trabajo", "trabajo en equipo"]], "population": "los trabajadores", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Recursos Humanos", "variable1": "clima organizacional", "variable2": "satisfacción laboral", "dimensions": [["comunicación interna", "liderazgo", "relaciones interpersonales"], ["satisfacción con las tareas", "satisfacción con la remuneración", "satisfacción con las condiciones laborales"]], "population": "los trabajadores", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Recursos Humanos", "variable1": "estrés laboral", "variable2": "compromiso organizacional", "dimensions": [["sobrecarga de trabajo", "conflicto de rol", "ambigüedad de rol"], ["compromiso afectivo", "compromiso de continuidad", "compromiso normativo"]], "population": "los trabajadores", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "negativa"}, {"area": "Finanzas", "variable1": "gestión financiera", "variable2": "rentabilidad empresarial", "dimensions": [["planificación financiera", "control financiero", "decisiones de inversión"], ["rentabilidad sobre activos", "rentabilidad sobre patrimonio", "margen neto"]], "population": "las microempresas comerciales", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Finanzas", "variable1": "gestión del capital de trabajo", "variable2": "liquidez empresarial", "dimensions": [["gestión de efectivo", "gestión de cuentas por cobrar", "gestión de inventarios"], ["liquidez corriente", "liquidez inmediata", "liquidez absoluta"]], "population": "las microempresas comerciales", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Finanzas", "variable1": "educación financiera", "variable2": "comportamiento financiero", "dimensions": [["conocimientos financieros", "actitudes financieras", "habilidades financieras"], ["elaboración de presupuestos", "hábitos de ahorro", "manejo del endeudamiento"]], "population": "los propietarios de microempresas", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Logística", "variable1": "gestión de inventarios", "variable2": "eficiencia logística", "dimensions": [["planificación de existencias", "control de existencias", "reposición de existencias"], ["uso de recursos", "cumplimiento de plazos", "control de costos logísticos"]], "population": "los trabajadores del área de logística", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Logística", "variable1": "gestión de proveedores", "variable2": "calidad del abastecimiento", "dimensions": [["selección de proveedores", "evaluación de proveedores", "desarrollo de proveedores"], ["conformidad de insumos", "oportunidad de entrega", "integridad de pedidos"]], "population": "los trabajadores del área de logística", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Logística", "variable1": "gestión de almacenes", "variable2": "desempeño de la distribución", "dimensions": [["recepción de mercancías", "almacenamiento", "preparación de pedidos"], ["puntualidad de entregas", "exactitud de entregas", "conservación de productos"]], "population": "los trabajadores del área de logística", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión estratégica", "variable1": "planificación estratégica", "variable2": "competitividad empresarial", "dimensions": [["diagnóstico estratégico", "formulación estratégica", "seguimiento estratégico"], ["eficiencia de costos", "diferenciación", "capacidad de respuesta al mercado"]], "population": "las pequeñas empresas", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión estratégica", "variable1": "liderazgo estratégico", "variable2": "innovación organizacional", "dimensions": [["visión compartida", "toma de decisiones", "orientación al cambio"], ["innovación de procesos", "innovación de productos", "innovación de métodos de gestión"]], "population": "las pequeñas empresas", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión estratégica", "variable1": "cultura organizacional", "variable2": "gestión del cambio", "dimensions": [["valores compartidos", "normas organizacionales", "prácticas organizacionales"], ["preparación para el cambio", "implementación del cambio", "consolidación del cambio"]], "population": "las pequeñas empresas", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Emprendimiento", "variable1": "competencias emprendedoras", "variable2": "intención emprendedora", "dimensions": [["identificación de oportunidades", "creatividad", "asunción de riesgos calculados"], ["deseo de emprender", "planificación del emprendimiento", "compromiso de emprender"]], "population": "los estudiantes de Administración", "institution": "el instituto ficticio Formación Andina", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Emprendimiento", "variable1": "orientación emprendedora", "variable2": "desempeño empresarial", "dimensions": [["innovación", "proactividad", "asunción de riesgos"], ["crecimiento de ventas", "crecimiento del empleo", "cumplimiento de metas empresariales"]], "population": "los emprendimientos", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Emprendimiento", "variable1": "redes de apoyo empresarial", "variable2": "desarrollo del emprendimiento", "dimensions": [["apoyo informativo", "apoyo técnico", "apoyo comercial"], ["formalización", "consolidación operativa", "expansión comercial"]], "population": "los emprendimientos", "institution": "la asociación empresarial Emprende Áncash", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión pública", "variable1": "gestión administrativa", "variable2": "calidad de atención al ciudadano", "dimensions": [["planificación", "organización", "control"], ["accesibilidad", "oportunidad de atención", "claridad de información"]], "population": "los usuarios", "institution": "la municipalidad ficticia de Valle Andino", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión pública", "variable1": "transparencia institucional", "variable2": "confianza ciudadana", "dimensions": [["acceso a información", "rendición de cuentas", "claridad de información pública"], ["competencia percibida", "integridad percibida", "orientación al ciudadano"]], "population": "los usuarios", "institution": "la municipalidad ficticia de Valle Andino", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Gestión pública", "variable1": "simplificación administrativa", "variable2": "satisfacción del usuario", "dimensions": [["reducción de requisitos", "reducción de etapas", "digitalización de trámites"], ["satisfacción con los plazos", "satisfacción con el trato", "satisfacción con el resultado"]], "population": "los usuarios", "institution": "la municipalidad ficticia de Valle Andino", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Operaciones y calidad", "variable1": "gestión de la calidad", "variable2": "productividad", "dimensions": [["enfoque al cliente", "gestión de procesos", "mejora continua"], ["productividad laboral", "productividad de materiales", "productividad de equipos"]], "population": "los trabajadores del área de operaciones", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Operaciones y calidad", "variable1": "mejora continua", "variable2": "desempeño operativo", "dimensions": [["identificación de problemas", "implementación de mejoras", "evaluación de mejoras"], ["calidad operativa", "tiempos de proceso", "eficiencia de recursos"]], "population": "los trabajadores del área de operaciones", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}, {"area": "Operaciones y calidad", "variable1": "transformación digital", "variable2": "eficiencia administrativa", "dimensions": [["adopción tecnológica", "competencias digitales", "integración de sistemas"], ["tiempos de atención", "uso de recursos", "exactitud de registros"]], "population": "los trabajadores del área de operaciones", "institution": "la empresa Servicios Andinos S.A.C.", "place": "Huaraz, Áncash", "year": "2026", "scope": "correlacional", "relation": "positiva"}]};
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clean=s=>String(s).replace(/\s+/g,' ').trim();
+const joinNames=a=>a.length<2?a[0]||'':a.slice(0,-1).join(', ')+' y '+a[a.length-1];
+let serial=0, generated=null, credit={name:'',photo:''};
+const storageKey='unasam-'+CONFIG.repo+'-credits';
+function toast(s){$('#status').textContent=s;$('#toast').textContent=s;$('#toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').style.display='none',3000);}
+function invalidate(){generated=null;$('#results').style.display='none';$('#resultContent').replaceChildren();}
+function addVariable(value='',dims=[]){
+ if($$('.variable-card').length>=10){toast('Máximo diez variables por propuesta.');return;}
+ const id=++serial, el=document.createElement('section');el.className='card variable-card';el.dataset.key=id;
+ el.innerHTML=`<div class="variable-top"><h3></h3><button type="button" class="small-button remove">Eliminar</button></div><div class="v-fields"><div><label for="v${id}">Nombre de la variable *</label><input class="v-name" id="v${id}" required maxlength="120" placeholder="Ej. clima organizacional"></div>${CONFIG.project===2?`<div><label for="d${id}">Dimensiones (opcionales, una por línea)</label><textarea class="v-dims" id="d${id}" maxlength="1200" placeholder="Comunicación interna&#10;Liderazgo"></textarea></div><fieldset class="forecast" hidden><legend>Pronóstico para esta variable</legend><label for="i${id}">Indicador cuantificable</label><input class="f-indicator" id="i${id}" maxlength="180" placeholder="Ej. porcentaje de trabajadores con satisfacción alta"><label for="c${id}">Valor esperado</label><div class="details-grid"><select id="c${id}" class="f-comparator"><option value="será mayor que">Mayor que</option><option value="será menor que">Menor que</option><option value="será igual a">Igual a</option><option value="será al menos">Al menos</option><option value="será como máximo">Como máximo</option></select><input aria-label="Valor numérico esperado" type="number" step="any" class="f-value" placeholder="Valor"></div><label for="u${id}">Unidad</label><input class="f-unit" id="u${id}" maxlength="80" placeholder="%, soles, puntos, días…"><label for="b${id}">Fundamento del pronóstico y referencia</label><textarea class="f-basis" id="b${id}" maxlength="1500" placeholder="Indica el antecedente o teoría real que sustenta el valor. No inventes datos."></textarea></fieldset>`:''}</div>`;
+ el.querySelector('.v-name').value=value;
+ if(CONFIG.project===2)el.querySelector('.v-dims').value=dims.join('\n');
+ el.querySelector('.remove').addEventListener('click',()=>{if($$('.variable-card').length<=2){toast('La consigna requiere al menos dos variables.');return;}el.remove();invalidate();sync();});
+ el.querySelector('.v-name').addEventListener('input',syncTargets);
+ $('#variables').appendChild(el);sync();
+}
+function syncTargets(){
+ const selected=$('#target').value;$('#target').replaceChildren();
+ $$('.variable-card').forEach((el,i)=>{el.querySelector('h3').textContent='Variable '+(i+1);const op=document.createElement('option');op.value=el.dataset.key;op.textContent=clean(el.querySelector('.v-name').value)||'Variable '+(i+1);$('#target').append(op);});
+ if([...$('#target').options].some(o=>o.value===selected))$('#target').value=selected;else $('#target').selectedIndex=$('#target').options.length-1;
+ $('#variableCount').textContent=$$('.variable-card').length+' variables';
+}
+function sync(){
+ syncTargets();const scope=$('#scope').value;
+ $('#authorNote').textContent=CONFIG.refs[Number($('#author').value)].note;
+ $('#causal').hidden=scope!=='explicativo';$('#causalCheck').required=scope==='explicativo';
+ $('#hypothesisControls').hidden=CONFIG.project!==2||scope!=='descriptivo';
+ const forecast=CONFIG.project===2&&scope==='descriptivo'&&$('#descMode').value==='forecast';
+ $$('.forecast').forEach(el=>{el.hidden=!forecast;el.querySelectorAll('input,textarea').forEach(f=>f.required=forecast);});
+ $('#targetField').hidden=scope==='descriptivo'||(CONFIG.project===1&&scope==='correlacional');
+ $('#specificField').hidden=CONFIG.project!==2;
+ $('#targetHelp').textContent=scope==='explicativo'?'Las otras variables se tratarán como posibles explicativas de esta variable de resultado.':'Las demás variables se relacionarán con esta. Con tres o más variables, el objetivo general considera su relación conjunta y los específicos sus relaciones individuales.';
+ $('#scopeNote').textContent=scope==='explicativo'?'Estudio explicativo: se plantea estudiar un posible efecto. El título no demuestra causalidad.':scope==='correlacional'?'Estudio correlacional: se plantea asociación entre variables. No presupone influencia causal ni una dirección positiva o negativa.':'Estudio descriptivo: se caracterizan las variables. No se afirmarán relaciones entre ellas. Las hipótesis de pronóstico requieren valores y fundamentos proporcionados por ti.';
+}
+function getData(){
+ const scope=$('#scope').value, errors=[];
+ const vars=$$('.variable-card').map(el=>({key:el.dataset.key,name:clean(el.querySelector('.v-name').value),dims:CONFIG.project===2?el.querySelector('.v-dims').value.split('\n').map(clean).filter(Boolean):[],indicator:clean(el.querySelector('.f-indicator')?.value||''),comparator:el.querySelector('.f-comparator')?.value,value:el.querySelector('.f-value')?.value||'',unit:clean(el.querySelector('.f-unit')?.value||''),basis:clean(el.querySelector('.f-basis')?.value||'')}));
+ const data={scope,vars,target:$('#target').value,author:Number($('#author').value),population:clean($('#population').value),institution:clean($('#institution').value),place:clean($('#place').value),year:$('#year').value,specific:$('#specificMode').value,forecast:$('#descMode').value==='forecast'};
+ if(vars.length<2||vars.length>10)errors.push('Ingresa entre dos y diez variables.');
+ if(vars.some(v=>!v.name))errors.push('Completa todos los nombres de las variables.');
+ if(new Set(vars.map(v=>v.name.toLocaleLowerCase())).size!==vars.length)errors.push('Las variables deben tener nombres distintos.');
+ vars.forEach((v,i)=>{if(new Set(v.dims.map(d=>d.toLocaleLowerCase())).size!==v.dims.length)errors.push('Hay dimensiones repetidas en la variable '+(i+1)+'.');if(v.dims.length>10)errors.push('Usa hasta diez dimensiones por variable.');});
+ if(!data.population||!data.institution||!data.place)errors.push('Completa población, organización y lugar.');
+ if(!/^(20\d{2}|2100)$/.test(data.year))errors.push('El año debe ser un entero entre 2000 y 2100.');
+ if(scope==='explicativo'&&!$('#causalCheck').checked)errors.push('Confirma que justificarás el diseño para estudiar un efecto causal.');
+ if(scope==='descriptivo'&&data.forecast)vars.forEach((v,i)=>{if(!v.indicator||v.value===''||!Number.isFinite(Number(v.value))||!v.unit||!v.basis)errors.push('Completa el pronóstico y su fundamento en la variable '+(i+1)+'.');if((v.unit==='%'||/porcentaje|por ciento/i.test(v.unit))&&(Number(v.value)<0||Number(v.value)>100))errors.push('El porcentaje esperado debe estar entre 0 y 100 en la variable '+(i+1)+'.');});
+ return {data,errors};
+}
+function ctx(d){return ' en '+d.population+' de '+d.institution+', '+d.place+', '+d.year;}
+function build(d){
+ const context=ctx(d), names=d.vars.map(v=>v.name), target=d.vars.find(v=>v.key===d.target)||d.vars[d.vars.length-1], others=d.vars.filter(v=>v!==target), left=joinNames(others.map(v=>v.name));
+ if(CONFIG.project===1){
+ const titles=d.scope==='correlacional'?['Relación entre '+joinNames(names)+context,joinNames(names)+': estudio correlacional'+context]:['Influencia de '+left+' en '+target.name+context,'Efecto de '+left+' sobre '+target.name+context];
+ return {titles,rows:[],note:d.scope==='explicativo'?'Títulos propuestos para estudiar efectos, no para afirmar resultados. Requieren un diseño capaz de sustentar inferencias causales.':'Los títulos plantean asociación. Con tres o más variables, define en el proyecto cuáles relaciones y qué modelo analizarás.'};
+ }
+ const rows=[];let general;
+ const association=(a,b,joint=false)=>({question:'¿Qué relación '+(joint?'conjunta ':'')+'existe entre '+a+' y '+b+context+'?',objective:'Determinar la relación '+(joint?'conjunta ':'')+'entre '+a+' y '+b+context+'.',hypothesis:'Existe una relación '+(joint?'conjunta ':'')+'entre '+a+' y '+b+context+'.'});
+ if(d.scope==='correlacional'){
+ general=association(left,target.name,others.length>1);
+ if(others.length>1){general.question='¿Qué relación tienen '+left+', consideradas conjuntamente, con '+target.name+context+'?';general.objective='Determinar la relación conjunta de '+left+' con '+target.name+context+'.';general.hypothesis=left+', consideradas conjuntamente, se relacionan con '+target.name+context+'.';}
+ if(others.length>1)others.forEach(v=>rows.push({...association(v.name,target.name),label:'Relación de variables'}));
+ else d.vars.forEach(v=>rows.push({label:'Descripción de '+v.name,question:'¿Cómo se caracteriza '+v.name+context+'?',objective:'Describir '+v.name+context+'.',hypothesis:'No se impone una hipótesis a este objetivo descriptivo. La hipótesis de relación se formula a nivel general.'}));
+ if(d.specific==='dimensions'){
+ others.forEach(v=>v.dims.forEach(dim=>rows.push({...association('la dimensión «'+dim+'» de '+v.name,target.name),label:'Dimensión de '+v.name})));
+ target.dims.forEach(dim=>rows.push({...association(left,'la dimensión «'+dim+'» de '+target.name,others.length>1),label:'Dimensión de '+target.name}));
+ }
+ }else{
+ const noHyp='No se formula automáticamente: este objetivo es descriptivo y no se ha definido un pronóstico específico.';
+ general={question:'¿Cómo se caracterizan '+joinNames(names)+context+'?',objective:'Describir '+joinNames(names)+context+'.',hypothesis:d.forecast?'Se plantean los pronósticos específicos por variable que se detallan a continuación. No se inventa una hipótesis global adicional.':'No se formula hipótesis por defecto: el estudio busca describir las variables y no pronosticar un valor.'};
+ d.vars.forEach(v=>{
+ const h=d.forecast?'Se espera que el indicador «'+v.indicator+'» '+v.comparator+' '+v.value+' '+v.unit+context+'.':noHyp;
+ rows.push({label:v.name,question:d.forecast?'¿Cuál es el valor del indicador «'+v.indicator+'» de '+v.name+context+'?':'¿Cómo se caracteriza '+v.name+context+'?',objective:d.forecast?'Estimar el valor del indicador «'+v.indicator+'» de '+v.name+context+'.':'Describir '+v.name+context+'.',hypothesis:h,basis:d.forecast?v.basis:''});
+ if(d.specific==='dimensions')v.dims.forEach(dim=>rows.push({label:'Dimensión de '+v.name,question:'¿Cómo se caracteriza la dimensión «'+dim+'» de '+v.name+context+'?',objective:'Describir la dimensión «'+dim+'» de '+v.name+context+'.',hypothesis:noHyp}));
+ });
+ }
+ return {general,rows,note:d.scope==='correlacional'?'Las hipótesis son proposiciones por contrastar. No se asigna una dirección ni significancia estadística sin sustento. La relación conjunta requiere un análisis adecuado a las variables y al diseño; no equivale a demostrar todas las relaciones por pares.':'Los pronósticos, cuando se activan, proceden de tus datos y fundamentos. Deben ser medibles y pertinentes para la variable. La herramienta no comprueba la veracidad de las referencias que ingreses.'};
+}
+function card(title,text,cls=''){const el=document.createElement('article');el.className='card result-card';const h=document.createElement('h3');h.textContent=title;const p=document.createElement('p');p.className='result-text '+cls;p.textContent=text;el.append(h,p);return el;}
+function render(d,r){
+ const c=$('#resultContent');c.replaceChildren();
+ if(r.titles){r.titles.forEach((t,i)=>{const el=card('Título propuesto '+(i+1),t,'preview-title');const count=document.createElement('p');count.className='counter';const n=t.split(/\s+/).length;count.textContent=n+' palabras'+(n>20?' · Revisa si puedes abreviarlo sin perder la delimitación.':'');el.append(count);c.append(el);});}
+ else {
+ c.append(card('Objetivo general',r.general.objective),card('Pregunta general',r.general.question),card('Hipótesis general / criterio',r.general.hypothesis));
+ const m=document.createElement('div');m.className='card matrix';
+ m.innerHTML='<h3>Correspondencia de objetivos, preguntas e hipótesis específicos</h3><table><thead><tr><th>N.º / componente</th><th>Objetivo específico</th><th>Pregunta específica</th><th>Hipótesis específica / criterio</th></tr></thead><tbody>'+r.rows.map((row,i)=>'<tr><td>'+(i+1)+'. '+safe(row.label)+'</td><td>'+safe(row.objective)+'</td><td>'+safe(row.question)+'</td><td>'+safe(row.hypothesis)+(row.basis?'<p><strong>Fundamento ingresado:</strong> '+safe(row.basis)+'</p>':'')+'</td></tr>').join('')+'</tbody></table>';c.append(m);
+ }
+ c.append(card('Criterio de revisión',r.note));
+ const ref=CONFIG.refs[d.author];c.append(card('Fuente seleccionada',ref.ref+'\n'+ref.note+(ref.source?'\n'+ref.source:'')));
+ generated={data:d,result:r};$('#results').style.display='block';$('#results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function textOutput(){if(!generated)return '';const {data:d,result:r}=generated;const out=[CONFIG.title.toUpperCase(),'Propuesta preliminar para revisión.','Alcance: '+d.scope,'Variables: '+joinNames(d.vars.map(v=>v.name)),'Población: '+d.population,'Organización: '+d.institution,'Lugar: '+d.place,'Año: '+d.year];
+ if(r.titles)r.titles.forEach((t,i)=>out.push('\nTÍTULO '+(i+1),t));else{out.push('\nOBJETIVO GENERAL',r.general.objective,'\nPREGUNTA GENERAL',r.general.question,'\nHIPÓTESIS GENERAL / CRITERIO',r.general.hypothesis);r.rows.forEach((row,i)=>out.push('\nESPECÍFICO '+(i+1)+' — '+row.label,'Objetivo: '+row.objective,'Pregunta: '+row.question,'Hipótesis / criterio: '+row.hypothesis,...(row.basis?['Fundamento ingresado por el usuario: '+row.basis]:[])));}
+ out.push('\nCRITERIO DE REVISIÓN',r.note,'\nREFERENCIAS CONSULTADAS',...CONFIG.refs.map(ref=>ref.ref+'\n'+(ref.url||ref.source||'')),'\nCRÉDITOS',credit.name?'Autoría del proyecto: '+credit.name:'Autoría del proyecto: pendiente de completar.','Desarrollo con asistencia de ChatGPT. Sin aval institucional.');return out.join('\n');}
+function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+// ZIP sin compresión para exportar un DOCX válido sin dependencias externas.
+const encoder=new TextEncoder();
+function zipStored(files){const chunks=[],central=[];let offset=0;const crcTable=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xedb88320^(n>>>1):n>>>1;return n>>>0;});
+ const crc32=bytes=>{let crc=0xffffffff;for(const b of bytes)crc=(crc>>>8)^crcTable[(crc^b)&255];return (crc^0xffffffff)>>>0;};
+ for(const [name,text] of Object.entries(files)){const filename=encoder.encode(name),data=encoder.encode(text),crc=crc32(data),local=new Uint8Array(30+filename.length),lv=new DataView(local.buffer);lv.setUint32(0,0x04034b50,true);lv.setUint16(4,20,true);lv.setUint16(6,0x800,true);lv.setUint32(14,crc,true);lv.setUint32(18,data.length,true);lv.setUint32(22,data.length,true);lv.setUint16(26,filename.length,true);local.set(filename,30);chunks.push(local,data);
+ const cent=new Uint8Array(46+filename.length),cv=new DataView(cent.buffer);cv.setUint32(0,0x02014b50,true);cv.setUint16(4,20,true);cv.setUint16(6,20,true);cv.setUint16(8,0x800,true);cv.setUint32(16,crc,true);cv.setUint32(20,data.length,true);cv.setUint32(24,data.length,true);cv.setUint16(28,filename.length,true);cv.setUint32(42,offset,true);cent.set(filename,46);central.push(cent);offset+=local.length+data.length;}
+ const size=central.reduce((a,b)=>a+b.length,0),end=new Uint8Array(22),ev=new DataView(end.buffer);ev.setUint32(0,0x06054b50,true);ev.setUint16(8,central.length,true);ev.setUint16(10,central.length,true);ev.setUint32(12,size,true);ev.setUint32(16,offset,true);return new Blob([...chunks,...central,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});}
+function xml(s){return String(s).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));}
+function docx(){const paragraphs=textOutput().split('\n').map(t=>'<w:p><w:pPr><w:spacing w:after="120"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Arial" w:hAnsi="Arial"/><w:sz w:val="22"/><w:lang w:val="es-PE"/></w:rPr><w:t xml:space="preserve">'+xml(t)+'</w:t></w:r></w:p>').join('');
+ return zipStored({'[Content_Types].xml':'<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>','_rels/.rels':'<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>','word/document.xml':'<?xml version="1.0" encoding="UTF-8"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+paragraphs+'<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>'});}
+function updateCredits(){ $('#creditName').textContent=credit.name?'Autoría del proyecto: '+credit.name:'Autoría del proyecto: pendiente de completar.';$('#creditPhoto').hidden=!credit.photo;if(credit.photo)$('#creditPhoto').src=credit.photo;else $('#creditPhoto').removeAttribute('src');try{localStorage.setItem(storageKey,JSON.stringify(credit));}catch{}}
+function loadExample(multi=false){const ex=CONFIG.examples[Number($('#example').value)||0];invalidate();$('#variables').replaceChildren();addVariable(ex.variable1,ex.dimensions[0]);if(multi)addVariable('clima organizacional',['Comunicación interna','Liderazgo']);addVariable(ex.variable2,ex.dimensions[1]);['population','institution','place','year'].forEach(k=>$('#'+k).value=ex[k]);$('#target').selectedIndex=$('#target').options.length-1;$('#descMode').value='none';$('#causalCheck').checked=false;sync();toast('Ejemplo ficticio cargado. Ajusta los datos a tu estudio.');}
+$('#addVariable').onclick=()=>{invalidate();addVariable();};
+$('#researchForm').addEventListener('input',invalidate);$('#researchForm').addEventListener('change',invalidate);
+['scope','author','descMode'].forEach(id=>$('#'+id).addEventListener('change',sync));
+$('#researchForm').addEventListener('submit',event=>{event.preventDefault();const {data,errors}=getData();$('#errors').style.display=errors.length?'block':'none';$('#errors').textContent=errors.join(' ');if(errors.length){invalidate();$('#errors').scrollIntoView({behavior:'smooth'});return;}render(data,build(data));});
+$('#clear').onclick=()=>{if(!confirm('¿Limpiar los datos de investigación?'))return;$('#researchForm').reset();$('#variables').replaceChildren();addVariable();addVariable();invalidate();$('#errors').style.display='none';sync();};
+CONFIG.examples.forEach((ex,i)=>{const op=document.createElement('option');op.value=i;op.textContent=ex.area+' · '+ex.variable1+' y '+ex.variable2;$('#example').append(op);});
+$('#loadExample').onclick=()=>loadExample();$('#multiExample').onclick=()=>{invalidate();$('#variables').replaceChildren();addVariable('gestión del talento humano',['Selección de personal','Capacitación']);addVariable('clima organizacional',['Comunicación interna','Liderazgo']);addVariable('desempeño laboral',['Cumplimiento de tareas','Calidad del trabajo']);$('#population').value='trabajadores';$('#institution').value='la empresa ficticia Servicios Andinos S.A.C.';$('#place').value='Huaraz';$('#year').value='2026';$('#target').selectedIndex=2;$('#descMode').value='none';$('#causalCheck').checked=false;sync();toast('Ejemplo ficticio de tres variables cargado.');};
+$('#copyAll').onclick=async()=>{if(!generated)return;try{await navigator.clipboard.writeText(textOutput());toast('Resultados copiados.');}catch{const ta=document.createElement('textarea');ta.value=textOutput();document.body.append(ta);ta.select();const ok=document.execCommand('copy');ta.remove();toast(ok?'Resultados copiados.':'Puedes descargar el texto o seleccionar los resultados.');}};
+$('#downloadTxt').onclick=()=>{if(generated)download(new Blob([textOutput()],{type:'text/plain;charset=utf-8'}),CONFIG.repo+'_propuesta.txt');};
+$('#downloadWord').onclick=()=>{if(generated)download(docx(),CONFIG.repo+'_propuesta.docx');};$('#print').onclick=()=>window.print();
+$('#themeSwitcher').onchange=()=>document.body.dataset.theme=$('#themeSwitcher').value;
+try{const embedded=JSON.parse($('#embeddedCredits').textContent);credit=embedded.name||embedded.photo?embedded:JSON.parse(localStorage.getItem(storageKey)||'null')||credit;}catch{}
+$('#student').value=credit.name;updateCredits();$('#student').addEventListener('input',()=>{credit.name=clean($('#student').value);updateCredits();});
+$('#photo').onchange=()=>{const file=$('#photo').files[0];if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>2*1024*1024){toast('Usa JPG, PNG o WebP de hasta 2 MB.');$('#photo').value='';return;}const reader=new FileReader();reader.onload=()=>{credit.photo=reader.result;updateCredits();};reader.readAsDataURL(file);};
+$('#saveCredits').onclick=()=>{if(!credit.name){toast('Escribe tu nombre real antes de guardar.');$('#student').focus();return;}const clone=document.documentElement.cloneNode(true);clone.querySelector('#embeddedCredits').textContent=JSON.stringify(credit).replace(/</g,'\\u003c');clone.querySelector('#variables').replaceChildren();clone.querySelector('#target').replaceChildren();clone.querySelector('#example').replaceChildren();clone.querySelector('#resultContent').replaceChildren();clone.querySelector('#results').style.display='none';clone.querySelector('#errors').style.display='none';clone.querySelector('#status').textContent='';clone.querySelector('#toast').style.display='none';download(new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'}),'index.html');toast('HTML con tus créditos descargado.');};
+addVariable();addVariable();sync();
+</script></body></html>
